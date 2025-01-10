@@ -315,13 +315,13 @@
   <div class="spacer"></div>
 </div>
 <div class="wrapper" fxLayout="column" fxLayoutAlign="start stretch">
-  <div *ngIf="employees.length > 0">
+  <div *ngIf="currentEmployees.length > 0">
     <h3 style="margin-top: 100px">Current Employees</h3>
     <mat-divider></mat-divider>
     <mat-list>
-      <mat-list-item *ngFor="let employee of employees;let i= index;">
+      <mat-list-item *ngFor="let employee of currentEmployees;let i= index;">
         {{ employee.name }} <br> {{ employee.role }}
-        <br> From   {{ employee.toDate | date : "shortDate" : "UTC" }} -  {{ employee.endDate | date : "shortDate" : "UTC" }}
+        <br> From   {{ employee.toDate | date : "shortDate" : "UTC" }} 
      
       <button
      
@@ -344,7 +344,7 @@
     <h3>Previous Employees</h3>
     <mat-divider></mat-divider>
     <mat-list>
-      <mat-list-item *ngFor="let employee of employees;let i= index;">
+      <mat-list-item *ngFor="let employee of previousEmployees;let i= index;">
         {{ employee.name }} <br> {{ employee.role }}
         <br> From   {{ employee.toDate | date : "shortDate" : "UTC" }} -  {{ employee.endDate | date : "shortDate" : "UTC" }}
      
@@ -413,7 +413,7 @@
       <div class="gridRow ">
 
       <mat-form-field appearance="outline">
-        <mat-label style="padding-bottom: 8px">Today</mat-label>
+        <mat-label style="padding-bottom: 8px">From</mat-label>
         <input
           matInput
           appDateMask
@@ -429,20 +429,20 @@
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
       <mat-form-field appearance="outline">
-        <mat-label style="padding-bottom: 8px">No Date</mat-label>
+        <mat-label style="padding-bottom: 8px">End Date</mat-label>
         <input
           matInput
           appDateMask
-          [matDatepicker]="picker"
+          [matDatepicker]="picker1"
           placeholder="MM/DD/YYYY"
           [(ngModel)]="endDate"
           style="padding-top: 1rem"
         />
         <mat-datepicker-toggle
           matSuffix
-          [for]="picker"
+          [for]="picker1"
         ></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
+        <mat-datepicker #picker1></mat-datepicker>
       </mat-form-field>
     </div>
     </mat-dialog-content>

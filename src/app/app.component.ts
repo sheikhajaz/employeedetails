@@ -7,7 +7,8 @@ import { IndexeddbService } from 'src/app/services/indexeddb.service';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  employees: any[] = [];
+  currentEmployees: any[] = [];
+  previousEmployees: any[] = [];
   employeeName: string = '';
   employeeRole: string = '';
   toDate: string = '';
@@ -41,7 +42,8 @@ export class AppComponent implements OnInit {
     this.indexeddbService
       .getEmployees()
       .then((data: any[]) => {
-        this.employees = data;
+        this.currentEmployees = data.filter(x=>x.endDate =="");
+       this.previousEmployees=data.filter(x=>x.endDate!="");
       })
       .catch((error) => {
         console.error('Error fetching employees:', error);
